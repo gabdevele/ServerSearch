@@ -72,15 +72,19 @@ public abstract class MultiplayerScreenMixin extends Screen {
 
     @Unique
     private SpriteIconButton serverSearch$generateIconButton() {
-        SpriteIconButton button = SpriteIconButton.builder(Component.translatable("serverSearch.cracked"), (e) -> {
+        SpriteIconButton button = SpriteIconButton.builder(Component.translatable("serverSearch.offlineMode"), (e) -> {
             serverSearch$offlineMode = !serverSearch$offlineMode;
             serverSearch$offlineModeButton = this.serverSearch$generateIconButton();
             serverSearch$offlineModeButton = this.addWidget(this.serverSearch$offlineModeButton);
             serverSearch$offlineModeButton.setPosition(this.width / 2 + 120, 5);
+            serverSearch$searchBarResponder(serverSearch$searchBar.getValue());
         }, true).width(20).sprite(
                 new ResourceLocation(serverSearch$offlineMode ?  "icon/new_realm" : "icon/link"),
                 15, 15).build();
-        button.setTooltip(Tooltip.create(Component.translatable("serverSearch.cracked")));
+        button.setTooltip(Tooltip.create(
+                serverSearch$offlineMode ? Component.translatable("serverSearch.offlineMode") :
+                        Component.translatable("serverSearch.onlineMode"))
+        );
         return button;
     }
 

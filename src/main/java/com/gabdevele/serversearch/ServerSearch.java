@@ -16,7 +16,7 @@ import org.slf4j.Logger;
 @Mod(ServerSearch.MOD_ID)
 public class ServerSearch
 {
-    public static final String MOD_ID = "serverSearch";
+    public static final String MOD_ID = "serversearch";
 
     private static final Logger LOGGER = LogUtils.getLogger();
 

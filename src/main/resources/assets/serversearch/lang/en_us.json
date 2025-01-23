@@ -2,6 +2,7 @@
   "serverSearch.search": "Search",
   "serverSearch.loading": "Fetching",
   "serverSearch.save": "Save",
-  "serverSearch.cracked": "Cracked",
+  "serverSearch.offlineMode": "Search all around the web",
+  "serverSearch.onlineMode": "Search between official approved servers",
   "serverSearch.searching": "Searching on the web..."
 }

@@ -20,7 +20,6 @@ import java.util.List;
 public class ServerSelectionMixin implements ISearchParameter {
     @Shadow @Final
     private List<ServerSelectionList.OnlineServerEntry> onlineServers;
-    @Shadow @Final private JoinMultiplayerScreen screen;
     @Mutable @Final @Shadow static Component SCANNING_LABEL;
     @Unique private boolean serverSearch$searching = false;
 

@@ -20,19 +20,19 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ServerApi {
-
-    private static final ConcurrentHashMap<String, List<ServerData>> cache = new ConcurrentHashMap<>();
+    //cache brings a lot of problems, so I temporarily removed it
+    //private static final ConcurrentHashMap<String, List<ServerData>> cache = new ConcurrentHashMap<>();
     private static final Logger LOGGER = LogUtils.getLogger();
-    private static final String API_URL = "http://127.0.0.1:5000";
+    private static final String API_URL = "https://gabdevele.ddns.net/mod";
 
     public static CompletableFuture<List<ServerData>> fetchServerData(String query, boolean offlineMode) {
         return CompletableFuture.supplyAsync(() -> {
-            if (cache.containsKey(query)) {
-                return cache.get(query);
-            }
+//            if (cache.containsKey(query)) {
+//                return cache.get(query);
+//            }
 
             List<ServerData> serverDataList;
-            String apiUrl = buildApiUrl(query);
+            String apiUrl = buildApiUrl(query, offlineMode);
 
             try {
                 JsonArray jsonArray = fetchJsonArrayFromApi(apiUrl);
@@ -42,13 +42,13 @@ public class ServerApi {
                 return null;
             }
 
-            cache.put(query, serverDataList);
+//            cache.put(query, serverDataList);
             return serverDataList;
         });
     }
 
-    private static String buildApiUrl(String query) {
-        return API_URL + "/search?name=" + query;
+    private static String buildApiUrl(String query,boolean offlineMode) {
+        return API_URL + "/search?name=" + query + "&cracked=" + offlineMode;
     }
 
     private static JsonArray fetchJsonArrayFromApi(String apiUrl) throws IOException, URISyntaxException {
